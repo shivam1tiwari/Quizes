@@ -19,7 +19,10 @@ const App = () => {
        
   let randomQuestion = [];
         [...uniqueIndex].forEach(ind=> randomQuestion.push(QUESTION[ind]))
-     
+/**
+* handleQuestion takes 
+* @param answer and set answer also update questionNumber 
+*/     
   const handleQuestion = (answer) => {
     setAnswer((prev) => {
       return [...prev, answer];
@@ -30,30 +33,34 @@ const App = () => {
       return newNumber;
     });
   };
-
+/**
+* It takes event as 
+*@param e and update ref.current value
+*/
   const handleRadio = (e)=>{
-    console.log(e.target.dataset.id)
     ref.current = e.target.dataset.id
-    console.log("raju",ref.current)
+    
   }
-
+/**
+* when click next button it call handleQuestion function
+*/
   const handleNext =()=>{
 
     if(ref.current!==""){
-      console.log(ref.current)
       handleQuestion(JSON.parse(ref.current));
       ref.current = ""
     }
 
     if(ref.current===""){
-      console.log("current 0")
     handleQuestion({
       id: `${randomQuestion[questionNumber].id}`,
       answer: null,
       index: null,
     })}
   }
-
+/**
+* It show summary of question answer 
+*/
   if (questionNumber > 9) {
     const result = {
       totalScore: 0,
@@ -120,7 +127,9 @@ const App = () => {
       </div>
     );
   }
-
+/**
+* Question Card
+*/
   return (
     <div className="App">
       <h1 className="heading">Quizes</h1>
